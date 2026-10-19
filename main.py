@@ -2,6 +2,7 @@ import pyperclip
 import time
 import subprocess
 import platform
+from excel import find_tariff
 
 def clear_terminal():
     if platform.system() == 'Windows':
@@ -17,6 +18,10 @@ while True:
     if current_text != previous_text:
         clear_terminal()
         previous_text = current_text
-        print(current_text, end='', flush=True)
+        result = find_tariff(current_text)
+        if result:
+            print(result)
+        else:
+            print('No result')
     else:
         continue
